@@ -17,7 +17,7 @@ View(AverageInequalitybyYear)
 
 ## plot
 
-plot.default(YearAG,CumulativeGini, type = "b", ylab = "Average Ineqaulity Level", xlab="Year", main = "Average Level of Ineqaulity in Latin America")
+plot.default(YearAverageGini,AverageGiniCoefficient, type = "b", ylab = "Average Ineqaulity Level", xlab="Year", main = "Average Level of Ineqaulity in Latin America")
 
 ##_________________________________________________________________________________________________________________________________________
 ##________________________________________% of People in LA living on $2.5 and $4 per day___________________________________________________
