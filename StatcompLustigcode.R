@@ -17,7 +17,7 @@ View(AverageInequalitybyYear)
 
 ## plot
 
-plot.default(YearAverageGini,AverageGiniCoefficient, type = "b", ylab = "Average Ineqaulity Level", xlab="Year", main = "Average Level of Ineqaulity in Latin America")
+plot.default(YearAverageGini,AverageGiniCoefficient, type = "b", ylab = "Average Inequality Level (Gini Coefficient)", xlab="Year", main = "Average Level of Inequality in Latin America")
 
 ##_________________________________________________________________________________________________________________________________________
 ##________________________________________% of People in LA living on $2.5 and $4 per day___________________________________________________
@@ -28,14 +28,16 @@ Yearmonperday<-c(1992, 1998, 2000, 2010)
 twopointfiveperday<-c(.278, .247, .249, .163)
 fourperday<-c(0.444, 0.407, 0.415,0.296)
 
-layout(matrix(c(1,2),2,1)) # optional 4 graphs/page 
+
+
+layout(matrix(c(1,2),2,1)) # 2 plots per page
 
 
 ##plots
 
-plot(Yearmonperday, twopointfiveperday, xlab="Year", ylab = "Percent", main = "Percent of People in LA Living on $2.5 per Day", col="blue")
+plot(Yearmonperday, twopointfiveperday, xlab="Year", ylab = "Percent", main = "Percent of People in LA Living on $2.5 per Day", col="blue", type = "b")
 
-plot(Yearmonperday, fourperday, xlab="Year", ylab = "Percent", main = "Percent of People in LA Living on $4 per Day", col="red")
+plot(Yearmonperday, fourperday, xlab="Year", ylab = "Percent", main = "Percent of People in LA Living on $4 per Day", col="red", type = "b")
 
 
 
@@ -49,9 +51,9 @@ layout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page
 ##______________________________________Education by Tier and Inequality 2000-2010______________________________________________________________________
 
 ## Y= Average annual percent change gini coefficient , X=average percent change in return to education (all levels), 
-## All of the following are average annual: P=percent change in return to primary education, S= percent change in return to secondary eduction, T=percent change in return to tiertiary education
+## All of the following are average annual: P=percent change in return to primary education, S= percent change in return to secondary eduction, T=percent change in return to tertiary education
 
-Countries<-c("Argentina","Bolivia","Brazil","Chile",	"Costa Rica",	"Dominican Republic",	"Ecuador"	,"El Salvador",	"Guatemala",	"Mexico",	"Nicaragua",	"Panama",	"Paraguay",	"Peru", "Uruguary", "Venezuela")
+Countries<-c("Argentina","Bolivia","Brazil","Chile",	"Costa Rica",	"Dominican Republic",	"Ecuador"	,"El Salvador",	"Guatemala",	"Mexico",	"Nicaragua",	"Panama",	"Paraguay",	"Peru", "Uruguay", "Venezuela")
 y=c(-1.3,-2.05, -1.03, -.72,-.47, -.79,-1.99,-1.24,-.1,-1.17,-2.64,-.74,-.39,-.91,-.2,-1.07)
 x=c(-1.8, -1.6, -3.533, -2.33, 0, -.7, -2.067, -.43, 1.533, -1.933, -1.8, 0, -3.67, -2.33, .867, -2.03)
 P=c(1.3, 2, -4.9, -3.5, -3.7, .8, -1, -2.2, 2, -4.3, -3, 2, -7.5, -6, 1.8, -3.3)
@@ -60,11 +62,15 @@ T=c(-3.7, -2.8, -2.2, 0, 1.5, -2.1, -5, 2.8, 2.1, -2.5, -1.7, -1.7, -1, -2.3, -1
 
 ## histograms
 
-hist(y)
-hist(x)
-hist(P)
-hist(S)
-hist(T)
+hist(y, main="Gini Coefficient", xlab="Average % Change")
+hist(P, main = "Primary Education", xlab="Average % Change")
+hist(S, main="Secondary Education", xlab="Average % Change")
+hist(T, main="Tertiary Education", xlab="Average % Change")
+
+layout(matrix(c(1,2),2,1))
+
+hist(y, main="Gini Coefficient", xlab="Average % Change")
+hist(x, main="Aggregate of Education", xlab="Average % Change")
 
 
 ##dataframe creation: Education by tier and inequality
@@ -74,6 +80,8 @@ list(EBTI)
 summary(EBTI)
 
 ## regressions
+
+layout(matrix(c(1,2,3,4),2,2))
 
 summary(lm(formula = y ~ P))
 plot(lm(formula = y ~ P))
@@ -102,20 +110,20 @@ plot(lm(formula = y ~ x))
 
 ## Plots
 
-plot(P,y, xlab = "%Change Returns to Primary Ed", ylab="% Change in Average Inequality", main = "% Change in Inequality vs % Change Avg. Return to Primary Ed")
+plot(P,y, xlab = "%Change Returns to Primary Ed", ylab="% Change in Average Inequality", main = "% Change in Inequality vs % Change Avg. Returns to Primary Ed")
 
-plot(S,y, xlab = "%Change Returns to Secondary Ed", ylab="% Change in Average Inequality", main = "% Change in Inequality vs % Change Avg. Return to Secondary Ed")
+plot(S,y, xlab = "%Change Returns to Secondary Ed", ylab="% Change in Average Inequality", main = "% Change in Inequality vs % Change Avg. Returns to Secondary Ed")
 
-plot(T,y, xlab = "%Change Returns to Teriary Ed", ylab="% Change in Average Inequality", main = "% Change in Inequality vs % Change Avg. Return to Tertiary Ed")
+plot(T,y, xlab = "%Change Returns to Teriary Ed", ylab="% Change in Average Inequality", main = "% Change in Inequality vs % Change Avg. Returns to Tertiary Ed")
 
-plot(x,y, xlab = "Avg. % Change Returns to Ed", ylab="% Change in Average Inequality", main = "% Change in Inequality vs Avg. % Change Return to Ed")
+plot(x,y, xlab = "Avg. % Change Returns to Ed", ylab="% Change in Average Inequality", main = "% Change in Inequality vs % Change Avg. Returns to Ed")
 
 
 
 ##______________________________________________________________________________________________________________________________________________________________
 ##__________________________Supply and Demand of Workers________________________________________________________________________________________________________
 
-## all are average annual percent change for 16 countries 2000-2010, WP represents the change in wage premium for increased education (skill), total change is change is chnage in demand of unskilled workers + change in supply of unskilled workers)
+## all are average annual percent change for 16 countries 2000-2010, WP represents the change in wage premium for increased (skill), total change is change is chnage in demand of unskilled workers + change in supply of unskilled workers)
 
 CountriesSD<-c("Argentina","Bolivia","Brazil","Chile",	"Costa Rica",	"Dominican Republic",	"Ecuador"	,"El Salvador",	"Guatemala",	"Mexico",	"Nicaragua",	"Panama",	"Paraguay",	"Peru", "Uruguary", "Venezuela")
 Changeinsupplyofunskilledworkers<-c(2.4,5.1,4.4,1.1,6,3.4,3.4,-0.03,2.3,2.2,6.6,2.4,6.1,3.8,1.1,4.2)
@@ -125,10 +133,10 @@ WP<-c(-2.4,-4.6,-3.2,-1.9,-2,-0.2,-3.2,-0.1,-1.9,-2.8,-6.9,-2.6,-5.6,-2.8,-0.9,-
 
 ##histograms
 
-hist(Changeinsupplyofunskilledworkers)
-hist(changeindemandofunskilledworkers)
-hist(TotalChangeinsupplyanddemandunskilledworkers)
-hist(WP)
+hist(Changeinsupplyofunskilledworkers, main=" Change in Supply of Unskilled Workers", xlab="Average % Change")
+hist(changeindemandofunskilledworkers, main="Change in Demand of Unskilled Workers", xlab="Average % Change")
+hist(TotalChangeinsupplyanddemandunskilledworkers, main="Total Change S&D Unskilled Workers", xlab="Average % Change")
+hist(WP,main="Change Wage Premium", xlab="Average % Change")
 
 ## creation of dataframes
 
@@ -178,9 +186,3 @@ plot(lm(formula = y ~ WP+changeindemandofunskilledworkers))
 
 summary(lm(formula = y ~ WP+TotalChangeinsupplyanddemandunskilledworkers))
 plot(lm(formula = y ~ WP+TotalChangeinsupplyanddemandunskilledworkers))
-
-
-
-
-
-
