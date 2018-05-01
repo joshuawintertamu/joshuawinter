@@ -279,7 +279,6 @@ x<-runif(100, min=0, max=1)
 hist(x)
 
 Atkinson(x)
-
 Theil(x)
 
 Gini(x,n=rep(1,length(x)),unbiased=TRUE,conf.level = NA,R=1000,type = "bca",na.rm = FALSE)
@@ -332,7 +331,7 @@ Theil(w)
 
 Gini(w,n=rep(1,length(w)),unbiased=TRUE,conf.level = NA,R=1000,type = "bca",na.rm = FALSE)
 
-Lc(y)
+Lc(w)
 
 w<-Lc(w, n = rep(1,length(w)), plot =F)
 
